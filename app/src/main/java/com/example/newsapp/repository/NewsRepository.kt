@@ -1,16 +1,16 @@
 package com.example.newsapp.repository
 
-import com.example.newsapp.api.retrofitinstance
+import com.example.newsapp.api.RetroFitInstance
 import com.example.newsapp.db.ArticleDatabase
 import com.example.newsapp.models.Article
 
 
 class NewsRepository(val db: ArticleDatabase) {
     suspend fun getHeadlines(countryCode: String, pageNumber: Int) =
-        retrofitinstance.api.getHeadlines(countryCode, pageNumber)
+        RetroFitInstance.api.getHeadlines(countryCode, pageNumber)
 
     suspend fun searchNews(searchQuery: String, pageNumber: Int) =
-        retrofitinstance.api.serchForNews(searchQuery, pageNumber)
+        RetroFitInstance.api.serchForNews(searchQuery, pageNumber)
 
     suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
 
